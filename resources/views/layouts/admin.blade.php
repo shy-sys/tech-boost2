@@ -46,13 +46,6 @@
 
                         <!-- Right Side Of Navbar -->
                         <ul class="navbar-nav ml-auto">
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-            {{-- ここまでナビゲーションバー --}}
-<!-- Right Side Of Navbar -->
-                        <ul class="navbar-nav ml-auto">
 
                         {{-- 以下を追記 --}}
                         <!-- Authentication Links -->
@@ -81,6 +74,12 @@
                             @endguest
                             {{-- 以上までを追記 --}}
                         </ul>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            {{-- ここまでナビゲーションバー --}}
+
             <main class="py-4">
                 {{-- コンテンツをここに入れるため、@yieldで空けておきます。 --}}
                 @yield('content')
