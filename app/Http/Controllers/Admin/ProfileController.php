@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 use App\Profile;
+use App\History;
+use Carbon\Carbon;
+
 class ProfileController extends Controller
 {
     //
@@ -22,14 +25,6 @@ class ProfileController extends Controller
       $profile = new Profile;
       $form = $request->all();
 
-      // formに画像があれば、保存する
-     if (isset($form['image'])) {
-      $path = $request->file('image')->store('public/image');
-      $profile->image_path = basename($path);
-   } else {
-      $profile->image_path = null;
-   }
-
       unset($form['_token']);
       unset($form['image']);
       // データベースに保存する
@@ -43,7 +38,7 @@ public function edit(Request $request)
     {
         // News Modelからデータを取得する
       $profile = Profile::find($request->id);
-      if (empty($news)) {
+      if (empty($profile)) {
         abort(404);    
       }
         return view('admin.profile.edit', ['profile_form' => $profile]);
@@ -62,7 +57,7 @@ public function update(Request $request)
       // 該当するデータを上書きして保存する
       $profile->fill($profile_form)->save();
       
-      return redirect('admin/profile/edit');
+      return redirect('admin/profile/edit?id=' . $request->id);
     }
 	
  // 以下を追記　　
@@ -72,6 +67,12 @@ public function update(Request $request)
       $profile = Profile::find($request->id);
       // 削除する
       $profile->delete();
+       // 以下を追記
+      $history = new History;
+      $history->profile_id = $profile->id;
+      $history->edited_at = Carbon::now();
+      $history->save();
+
       return redirect('admin/profile/');
   }  
 

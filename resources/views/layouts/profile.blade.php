@@ -45,7 +45,7 @@
                         </ul>
                      
                        <!-- Right Side Of Navbar -->
-                        <ul class="navbar-nav ml-auto">
+                        <ul class="navbar-nav ml-auto">{{ csrf_field() }}
                         
                         {{-- 以下を追記 --}}
                         <!-- Authentication Links -->
