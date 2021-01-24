@@ -20,4 +20,5 @@ class Profile extends Model
       return $this->hasMany('App\ProfileHistory');
 
     }
+
 }
