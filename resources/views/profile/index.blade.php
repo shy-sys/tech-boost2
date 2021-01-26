@@ -13,6 +13,9 @@
                                     <h1>{{ str_limit($headline->name, 70) }}</h1>
                                 </div>
                                 <div class="title p-2">
+                                    <h1>{{ str_limit($headline->age, 70) }}</h1>
+                                </div>
+                                <div class="title p-2">
                                     <h1>{{ str_limit($headline->gendey, 70) }}</h1>
                                 </div>
                                 <div class="title p-2">
